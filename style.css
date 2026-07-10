@@ -108,6 +108,8 @@ nav {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
+    color: var(--light);
+    z-index: 1001;
 }
 
 /* Mobile Responsive Navigation */
@@ -126,8 +128,10 @@ nav {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: 0.5s;
+        transition: 0.5s ease;
         box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        z-index: 999;
+        gap: 0;
     }
 
     .nav-links.active {
@@ -136,6 +140,10 @@ nav {
 
     .nav-links li {
         margin: 1.5rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
     }
 }
 
@@ -148,6 +156,7 @@ nav {
     text-align: center;
     background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent),
                 radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.15), transparent);
+    margin-top: 0;
 }
 
 .hero-content h1 {
