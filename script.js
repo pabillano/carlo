@@ -7,18 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
-if (mobileMenu) {
+if (mobileMenu && navLinks) {
     mobileMenu.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        console.log('Menu toggled'); // Para sa debugging
+    });
+
+    // Close menu kapag nag-click sa link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
     });
 }
-
-// Close menu kapag nag-click sa link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-    });
-});
 
 // Active Link Highlighting (Extra check)
 const currentLocation = location.href;
