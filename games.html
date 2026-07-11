@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | Carlo Pabillano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CARLO<span>PABILLANO</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="games.html" class="active">Games</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>🎮 Game Hub</h1>
+            <p>Play and have fun with our collection of interactive games</p>
+        </div>
+    </section>
+
+    <!-- Game Selection -->
+    <section class="games-section container">
+        <div class="games-grid">
+            <!-- Memory Game Card -->
+            <div class="game-card glass-card">
+                <div class="game-icon">
+                    <i class="fas fa-th"></i>
+                </div>
+                <h3>Memory Game</h3>
+                <p>Match pairs of cards and test your memory skills</p>
+                <button class="btn primary-btn play-btn" data-game="memory">Play Game</button>
+            </div>
+
+            <!-- Tic Tac Toe Card -->
+            <div class="game-card glass-card">
+                <div class="game-icon">
+                    <i class="fas fa-border-all"></i>
+                </div>
+                <h3>Tic Tac Toe</h3>
+                <p>Classic 3x3 grid game against AI</p>
+                <button class="btn primary-btn play-btn" data-game="tictactoe">Play Game</button>
+            </div>
+
+            <!-- Snake Game Card -->
+            <div class="game-card glass-card">
+                <div class="game-icon">
+                    <i class="fas fa-arrow-circle-right"></i>
+                </div>
+                <h3>Snake Game</h3>
+                <p>The classic retro snake game</p>
+                <button class="btn primary-btn play-btn" data-game="snake">Play Game</button>
+            </div>
+
+            <!-- Quiz Game Card -->
+            <div class="game-card glass-card">
+                <div class="game-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Quiz Game</h3>
+                <p>Answer questions and test your knowledge</p>
+                <button class="btn primary-btn play-btn" data-game="quiz">Play Game</button>
+            </div>
+
+            <!-- Flappy Bird Card -->
+            <div class="game-card glass-card">
+                <div class="game-icon">
+                    <i class="fas fa-dove"></i>
+                </div>
+                <h3>Flappy Bird</h3>
+                <p>Navigate through obstacles</p>
+                <button class="btn primary-btn play-btn" data-game="flappy">Play Game</button>
+            </div>
+
+            <!-- Breakout Game Card -->
+            <div class="game-card glass-card">
+                <div class="game-icon">
+                    <i class="fas fa-brick"></i>
+                </div>
+                <h3>Brick Breaker</h3>
+                <p>Break all the bricks with your paddle</p>
+                <button class="btn primary-btn play-btn" data-game="breakout">Play Game</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Container (Hidden by default) -->
+    <div id="game-container" class="game-container" style="display: none;">
+        <div class="game-wrapper">
+            <button class="btn secondary-btn back-btn" id="back-btn">← Back to Games</button>
+            <div id="game-content"></div>
+        </div>
+    </div>
+
+    <!-- Memory Game -->
+    <template id="memory-game-template">
+        <div class="game-board memory-board">
+            <h2>Memory Game</h2>
+            <div class="score-display">Score: <span id="memory-score">0</span></div>
+            <div class="memory-grid" id="memory-grid"></div>
+            <button class="btn primary-btn" id="memory-reset">Reset Game</button>
+        </div>
+    </template>
+
+    <!-- Tic Tac Toe Game -->
+    <template id="tictactoe-game-template">
+        <div class="game-board tictactoe-board">
+            <h2>Tic Tac Toe</h2>
+            <div class="score-display">You: <span id="player-score">0</span> | AI: <span id="ai-score">0</span></div>
+            <div class="tictactoe-grid" id="tictactoe-grid"></div>
+            <button class="btn primary-btn" id="tictactoe-reset">New Game</button>
+        </div>
+    </template>
+
+    <!-- Snake Game -->
+    <template id="snake-game-template">
+        <div class="game-board snake-board">
+            <h2>Snake Game</h2>
+            <div class="score-display">Score: <span id="snake-score">0</span></div>
+            <canvas id="snake-canvas" width="400" height="400"></canvas>
+            <button class="btn primary-btn" id="snake-start">Start Game</button>
+        </div>
+    </template>
+
+    <!-- Quiz Game -->
+    <template id="quiz-game-template">
+        <div class="game-board quiz-board">
+            <h2>Quiz Game</h2>
+            <div class="score-display">Score: <span id="quiz-score">0</span> / <span id="quiz-total">0</span></div>
+            <div id="quiz-container"></div>
+            <button class="btn primary-btn" id="quiz-next" style="display: none;">Next Question</button>
+            <button class="btn primary-btn" id="quiz-restart" style="display: none;">Restart Quiz</button>
+        </div>
+    </template>
+
+    <!-- Flappy Bird Game -->
+    <template id="flappy-game-template">
+        <div class="game-board flappy-board">
+            <h2>Flappy Bird</h2>
+            <div class="score-display">Score: <span id="flappy-score">0</span></div>
+            <canvas id="flappy-canvas" width="400" height="500"></canvas>
+            <button class="btn primary-btn" id="flappy-start">Start Game</button>
+        </div>
+    </template>
+
+    <!-- Breakout Game -->
+    <template id="breakout-game-template">
+        <div class="game-board breakout-board">
+            <h2>Brick Breaker</h2>
+            <div class="score-display">Score: <span id="breakout-score">0</span></div>
+            <canvas id="breakout-canvas" width="500" height="300"></canvas>
+            <button class="btn primary-btn" id="breakout-start">Start Game</button>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+    <script src="games.js"></script>
+</body>
+</html>
